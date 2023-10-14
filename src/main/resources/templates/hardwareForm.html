@@ -1,4 +1,4 @@
-<form th:action="@{/patient/new}" th:object="${patient}" method="post">
+<form th:action="@{/hardware/new}" th:object="${hardware}" method="post">
 
     <input type="text" th:field="*{firstName}" placeholder="Введите имя">
     <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>

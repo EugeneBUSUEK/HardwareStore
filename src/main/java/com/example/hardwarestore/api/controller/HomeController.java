@@ -25,13 +25,13 @@ public class HomeController {
     }
 
     @GetMapping("/hardware/new")
-    public String newPatientForm(Model model) {
+    public String newHardwareForm(Model model) {
         model.addAttribute("hardware", new Hardware());
         return "hardwareForm";
     }
 
     @PostMapping("/hardware/new")
-    public String addPatient(@Valid @ModelAttribute Hardware hardware, BindingResult result) {
+    public String addHardware(@Valid @ModelAttribute Hardware hardware, BindingResult result) {
         if (result.hasErrors()) {
             return "hardwareForm";
         }

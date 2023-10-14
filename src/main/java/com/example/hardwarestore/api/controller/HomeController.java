@@ -38,7 +38,7 @@ public class HomeController {
 
         hardwareRepository.save(new HardwareEntity(
                 null,
-                hardware.getName()
+                hardware.getType()
         ));
         // сохраните объект hardware, например, в базе данных
 

@@ -9,8 +9,11 @@ import lombok.*;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class Hardware {
-    @NotBlank(message = "This field should not be empty")
+    @NotBlank(message = "Поле не должно быть пустым")
     private String type;
+
+    @NotBlank(message = "Поле не должно быть пустым")
+    private String name;
 
     // остальные поля...
 

@@ -21,6 +21,7 @@ public class HomeController {
     @GetMapping("/home")
     public String index(Model model) {
         model.addAttribute("message", "Открыта главная страница магазина");
+        model.addAttribute("hardwares", hardwareRepository.findAll());
         return "home";
     }
 
@@ -37,7 +38,7 @@ public class HomeController {
         }
 
         hardwareRepository.save(new HardwareEntity(
-                null,
+                hardware.getName(),
                 hardware.getType()
         ));
         // сохраните объект hardware, например, в базе данных

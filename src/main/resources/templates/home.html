@@ -13,7 +13,7 @@
     <p th:text="${message}"></p>
 
     <ul class="list-group" th:each="hardware: ${hardwares}" style="margin-bottom: 5px;">
-        <li> <span th:text="${hardware.name}"></span> | <span th:text="${hardware.type}"></span></li>
+        <li><span th:text="${hardware.name}"></span> | <span th:text="${hardware.type}"></span></li>
     </ul>
 
     <a th:href="@{/hardware/new}">

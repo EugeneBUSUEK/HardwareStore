@@ -3,6 +3,7 @@ package com.example.hardwarestore.model;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Builder
 @Getter
@@ -16,7 +17,7 @@ public class Hardware {
     @NotBlank(message = "Тип не может быть пустым")
     private String type;
 
-    @NotBlank(message = "Цена не может быть пустой")
+    @NotNull(message = "Цена не может быть пустой")
     private Double price;
 
     private String description;

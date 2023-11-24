@@ -1,6 +1,7 @@
 package com.example.hardwarestore.persist.db.postgres.entity;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,4 +24,8 @@ public class HardwareEntity {
     private String name;
     @NonNull
     private String type;
+    @NonNull
+    private Double price;
+    @Nullable
+    private String description;
 }

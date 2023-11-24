@@ -10,11 +10,16 @@ import javax.validation.constraints.NotBlank;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class Hardware {
-    @NotBlank(message = "Поле не должно быть пустым")
+    @NotBlank(message = "Название не может быть пустым")
+    private String name;
+
+    @NotBlank(message = "Тип не может быть пустым")
     private String type;
 
-    @NotBlank(message = "Поле не должно быть пустым")
-    private String name;
+    @NotBlank(message = "Цена не может быть пустой")
+    private Double price;
+
+    private String description;
 
     // остальные поля...
 

@@ -7,19 +7,63 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<div class="container" style="display: flex; flex-direction: column; justify-content: center; align-items: center ">
-    <h2>Добро пожаловать в наш магазин!</h2>
+<div style="padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: gray solid 1px; margin-bottom: 20px">
+    <p style="font-size: 20px; font-weight: bold; text-transform: uppercase">Магазин стройматериалов</p>
+    <div>
+        <a th:href="@{/home}">
+            <button type="button" class="btn btn-dark">Главная страница</button>
+        </a>
+        <a th:href="@{/hardware/new}">
+            <button type="button" class="btn btn-dark">Добавить новый товар</button>
+        </a>
+    </div>
+</div>
 
-    <p th:text="${message}"></p>
+<div class="container"
+     style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 50px ">
+    <div>
+        <h2>Добро пожаловать в наш магазин!</h2>
+        <p th:text="${message}"></p>
+    </div>
 
-    <ul class="list-group" th:each="hardware: ${hardwares}" style="margin-bottom: 5px;">
-        <li><span th:text="${hardware.name}"></span> | <span th:text="${hardware.type}"></span></li>
-    </ul>
+    <div style="width: 100%; display: flex; align-items: center; flex-direction: column; gap: 10px ">
+        <p>Список доступных товаров</p>
+        <table th:if="${hardwares.size() != 0}" class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Название товара</th>
+                <th scope="col">Тип товара</th>
+                <th scope="col">Цена товара</th>
+                <th scope="col">Описание товара</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody th:each="hardware: ${hardwares}">
+            <tr>
+                <th scope="row">1</th>
+                <td th:text="${hardware.name}"></td>
+                <td th:text="${hardware.type}"></td>
+                <td th:text="${hardware.price}"></td>
+                <td th:text="${hardware.description}"></td>
+                <td style="display: flex; justify-content: center">
+                    <button type="button" class="btn btn-dark" disabled>Купить товар</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-    <a th:href="@{/hardware/new}">
-        <button type="button" class="btn btn-primary">Добавить новый товар</button>
-    </a>
+        <p style="font-weight: bolder; opacity: 70%" th:if="${hardwares.size() == 0}">Доступных товаров сейчас нет, но
+            вы можете добавить их самостоятельно</p>
 
+        <!--    <ul class="list-group" th:each="hardware: ${hardwares}" style="margin-bottom: 5px;">-->
+        <!--        <li><span th:text="${hardware.name}"></span> | <span th:text="${hardware.type}"></span></li>-->
+        <!--    </ul>-->
+
+        <a th:href="@{/hardware/new}">
+            <button type="button" class="btn btn-primary">Добавить новый товар</button>
+        </a>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

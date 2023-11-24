@@ -7,10 +7,21 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<div class="container" style="height: 50vh; display: flex; flex-direction: column; justify-content: space-between">
-    <a th:href="@{/home}">
-        <button type="button" class="btn btn-dark">На главную</button>
-    </a>
+<div style="padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: gray solid 1px; margin-bottom: 20px">
+    <p style="font-size: 20px; font-weight: bold; text-transform: uppercase">Магазин стройматериалов</p>
+    <div>
+        <a th:href="@{/home}">
+            <button type="button" class="btn btn-dark">Главная страница</button>
+        </a>
+        <a th:href="@{/hardware/new}">
+            <button type="button" class="btn btn-dark">Добавить новый товар</button>
+        </a>
+    </div>
+</div>
+<div class="container" style="display: flex; flex-direction: column; justify-content: space-between; gap: 20px">
+    <div>
+        <h2>Добавление товара</h2>
+    </div>
 
     <form th:action="@{/hardware/new}" th:object="${hardware}" method="post">
 
@@ -18,8 +29,8 @@
             <label for="exampleInputEmail1">Название товара</label>
             <input type="text" th:field="*{name}" class="form-control" id="exampleInputEmail2"
                    aria-describedby="emailHelp"
-                   placeholder="Введите имя">
-            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                   placeholder="Введите название">
+            <p style="color: crimson" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
 
         </div>
 
@@ -28,8 +39,21 @@
             <input type="text" th:field="*{type}" class="form-control" id="exampleInputEmail1"
                    aria-describedby="emailHelp"
                    placeholder="Введите тип">
-            <p th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p>
+            <p style="color: crimson" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p>
 
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Цена товара</label>
+            <input type="number" min="0" th:field="*{price}" class="form-control" id="exampleInputEmail3"
+                   placeholder="Введите цену">
+            <p style="color: crimson" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Описание (опиционально)</label>
+            <textarea class="form-control" th:field="*{description}" placeholder="Введите описание товара"
+                      id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary btn-lg btn-block">Добавить товар</button>

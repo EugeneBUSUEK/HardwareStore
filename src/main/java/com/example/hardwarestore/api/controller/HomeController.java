@@ -7,7 +7,7 @@ import com.example.hardwarestore.persist.db.postgres.UserRepository;
 import com.example.hardwarestore.persist.db.postgres.entity.HardwareEntity;
 import com.example.hardwarestore.persist.db.postgres.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +23,7 @@ public class HomeController {
 
     private final HardwareRepository hardwareRepository;
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/home")
     public String index(Model model) {
@@ -71,7 +71,7 @@ public class HomeController {
         userRepository.save(new UserEntity(
                 null,
                 user.getUsername(),
-                passwordEncoder.encode(user.getPassword()),
+                user.getPassword(),
                 "rol"
         ));
 

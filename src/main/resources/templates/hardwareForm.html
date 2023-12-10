@@ -54,6 +54,15 @@
         </div>
 
         <div class="form-group">
+            <label for="exampleInputEmail1">Производитель</label>
+            <select class="form-control" th:field="*{producerId}">
+                <option th:each="producer: ${producers}" th:text="${producer.getName()}" th:value="${producer.getId()}"></option>
+            </select>
+            <p style="color: crimson" th:if="${#fields.hasErrors('producerId')}" th:errors="*{producerId}"></p>
+        </div>
+
+
+        <div class="form-group">
             <label for="exampleInputEmail1">Описание (опиционально)</label>
             <textarea class="form-control" th:field="*{description}" placeholder="Введите описание товара"
                       id="exampleFormControlTextarea1" rows="3"></textarea>

@@ -50,7 +50,7 @@ public class HomeController {
             return "hardwareForm";
         }
         var producer = new ProducerEntity();
-        producer.setId(UUID.fromString(hardware.getProducerId()));
+        producer.setId(hardware.getProducerId());
         hardwareRepository.save(new HardwareEntity(
                 null,
                 hardware.getName(),

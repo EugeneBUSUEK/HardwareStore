@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.UUID;
 
 @Entity
 @Setter
@@ -18,7 +17,7 @@ public class ProducerEntity {
 
     @Id
     @GeneratedValue
-    private UUID id;
+    private Long id;
     @NonNull
     private String name;
     @NonNull

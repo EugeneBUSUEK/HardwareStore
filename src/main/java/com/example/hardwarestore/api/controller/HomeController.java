@@ -3,8 +3,10 @@ package com.example.hardwarestore.api.controller;
 import com.example.hardwarestore.model.Hardware;
 import com.example.hardwarestore.model.User;
 import com.example.hardwarestore.persist.db.postgres.HardwareRepository;
+import com.example.hardwarestore.persist.db.postgres.ProducerRepository;
 import com.example.hardwarestore.persist.db.postgres.UserRepository;
 import com.example.hardwarestore.persist.db.postgres.entity.HardwareEntity;
+import com.example.hardwarestore.persist.db.postgres.entity.ProducerEntity;
 import com.example.hardwarestore.persist.db.postgres.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,12 +18,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
 
     private final HardwareRepository hardwareRepository;
+    private final ProducerRepository producerRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -35,6 +39,8 @@ public class HomeController {
     @GetMapping("/hardware/new")
     public String newHardwareForm(Model model) {
         model.addAttribute("hardware", new Hardware());
+        var producers = producerRepository.findAll();
+        model.addAttribute("producers", producers);
         return "hardwareForm";
     }
 
@@ -43,13 +49,15 @@ public class HomeController {
         if (result.hasErrors()) {
             return "hardwareForm";
         }
-
+        var producer = new ProducerEntity();
+        producer.setId(UUID.fromString(hardware.getProducerId()));
         hardwareRepository.save(new HardwareEntity(
                 null,
                 hardware.getName(),
                 hardware.getType(),
                 hardware.getPrice(),
-                hardware.getDescription()
+                hardware.getDescription(),
+                producer
         ));
         // сохраните объект hardware, например, в базе данных
 

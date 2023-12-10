@@ -21,6 +21,7 @@ public class Hardware {
     private Double price;
 
     private String description;
+    private String producerId;
 
     // остальные поля...
 

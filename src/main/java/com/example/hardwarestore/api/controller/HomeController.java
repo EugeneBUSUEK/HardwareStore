@@ -59,7 +59,6 @@ public class HomeController {
                 hardware.getDescription(),
                 producer
         ));
-        // сохраните объект hardware, например, в базе данных
 
         return "redirect:/home";
     }
@@ -76,15 +75,23 @@ public class HomeController {
             return "userForm";
         }
 
+        // Проверяем, существует ли пользователь с таким именем
+        if (!userRepository.findByUsername(user.getUsername()).isEmpty()) {
+            result.rejectValue("username", "error.user", "Пользователь с таким именем уже существует");
+            return "userForm";
+        }
+
         userRepository.save(new UserEntity(
                 null,
                 user.getUsername(),
                 passwordEncoder.encode(user.getPassword()),
+                user.getEmail(),
                 "rol"
         ));
 
         return "redirect:/home";
     }
+
 
 
     @GetMapping("/login")

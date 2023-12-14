@@ -1,5 +1,6 @@
 package com.example.hardwarestore.model;
 
+import com.example.hardwarestore.helpers.ValidEmail;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -10,13 +11,13 @@ import javax.validation.constraints.NotBlank;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class User {
-    @NotBlank(message = "Поле не должно быть пустым")
+    @NotBlank(message = "Имя пользователя должно быть заполнено")
     private String username;
 
-    @NotBlank(message = "Поле не должно быть пустым")
+    @ValidEmail
+    @NotBlank(message = "Почта не может быть пустой")
+    private String email;
+
+    @NotBlank(message = "Пароль не может быть пустым")
     private String password;
-
-    // остальные поля...
-
-    // геттеры и сеттеры
 }
